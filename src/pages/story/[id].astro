@@ -1,0 +1,27 @@
+---
+import { getCollection } from "astro:content";
+import StoryLayout from "../../layouts/StoryLayout.astro";
+
+export async function getStaticPaths() {
+  const stories = await getCollection("story");
+  console.log("stories", stories);
+  return stories.map((data, index) => ({
+    params: { id: data.data.slug },
+    props: { story: data.data, index: index },
+  }));
+}
+
+const { story, index } = Astro.props;
+---
+
+<StoryLayout title={story.Title}>
+  <h1 class="text-storyprimary text-6xl font-bold w-full flex items-start">
+    <span class="w-min grow">{story.Title}</span>
+    <span class="grow-2 text-sm uppercase leading-2 border-b text-right pb-6">
+      Vol. {index + 1}
+    </span>
+  </h1>
+  <div class="bg-storysecondary ml-40 p-8 pt-10 -mt-4">
+    <p>{story.Date}</p>
+  </div>
+</StoryLayout>

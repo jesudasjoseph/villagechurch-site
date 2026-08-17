@@ -12,8 +12,10 @@
     "astro": "astro"
   },
   "dependencies": {
+    "@sensinum/astro-strapi-loader": "^1.4.0",
     "@tailwindcss/vite": "^4.3.3",
     "astro": "^7.2.0",
+    "qs": "^6.15.3",
     "tailwindcss": "^4.3.3"
   }
 }
