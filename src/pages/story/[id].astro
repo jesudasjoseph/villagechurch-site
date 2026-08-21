@@ -1,6 +1,8 @@
 ---
 import { getCollection } from "astro:content";
-import StoryLayout from "../../layouts/StoryLayout.astro";
+import Page from "../../layouts/Page.astro";
+import Excerpt from "../../components/story/Excerpt.astro";
+import StoryBody from "../../components/story/StoryBody.astro";
 
 export async function getStaticPaths() {
   const stories = await getCollection("story");
@@ -12,16 +14,26 @@ export async function getStaticPaths() {
 }
 
 const { story, index } = Astro.props;
+
+const text =
+  "Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapien vitae pellentesque sem placerat. In id cursus mi pretium tellus duis convallis. Tempus leo eu aenean sed diam urna tempor. Pulvinar vivamus fringilla lacus nec metus bibendum egestas. Iaculis massa nisl malesuada lacinia integer nunc posuere. Ut hendrerit semper vel class aptent taciti sociosqu. Ad litora torquent per conubia nostra inceptos himenaeos.\
+Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapien vitae pellentesque sem placerat. In id cursus mi pretium tellus duis convallis. Tempus leo eu aenean sed diam urna tempor. Pulvinar vivamus fringilla lacus nec metus bibendum egestas. Iaculis massa nisl malesuada lacinia integer nunc posuere. Ut hendrerit semper vel class aptent taciti sociosqu. Ad litora torquent per conubia nostra inceptos himenaeos.\
+Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapien vitae pellentesque sem placerat. In id cursus mi pretium tellus duis convallis. Tempus leo eu aenean sed diam urna tempor. Pulvinar vivamus fringilla lacus nec metus bibendum egestas. Iaculis massa nisl malesuada lacinia integer nunc posuere. Ut hendrerit semper vel class aptent taciti sociosqu. Ad litora torquent per conubia nostra inceptos himenaeos.\
+Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapien vitae pellentesque sem placerat. In id cursus mi pretium tellus duis convallis. Tempus leo eu aenean sed diam urna tempor. Pulvinar vivamus fringilla lacus nec metus bibendum egestas. Iaculis massa nisl malesuada lacinia integer nunc posuere. Ut hendrerit semper vel class aptent taciti sociosqu. Ad litora torquent per conubia nostra inceptos himenaeos.\
+Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapien vitae pellentesque sem placerat. In id cursus mi pretium tellus duis convallis. Tempus leo eu aenean sed diam urna tempor. Pulvinar vivamus fringilla lacus nec metus bibendum egestas. Iaculis massa nisl malesuada lacinia integer nunc posuere. Ut hendrerit semper vel class aptent taciti sociosqu. Ad litora torquent per conubia nostra inceptos himenaeos.";
 ---
 
-<StoryLayout title={story.Title}>
-  <h1 class="text-storyprimary text-6xl font-bold w-full flex items-start">
-    <span class="w-min grow">{story.Title}</span>
-    <span class="grow-2 text-sm uppercase leading-2 border-b text-right pb-6">
-      Vol. {index + 1}
-    </span>
+<Page title={story.title}>
+  <h1
+    class="text-storyprimary text-8xl font-bold w-full flex items-start font-playfair-display m-8 relative"
+  >
+    {story.title}
   </h1>
   <div class="bg-storysecondary ml-40 p-8 pt-10 -mt-4">
-    <p>{story.Date}</p>
+    <p>{story.date}</p>
   </div>
-</StoryLayout>
+</Page>
+
+<StoryBody body={story.body}>
+  <Excerpt slot="excerpt" text={story.excerpt} />
+</StoryBody>

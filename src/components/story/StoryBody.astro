@@ -1,0 +1,16 @@
+---
+const body: string = Astro.props.body;
+
+let splitBody = body.split(". ");
+let firstPart = splitBody.length > 8 ? splitBody.slice(0, 8).concat(". ") : "";
+let lastPart =
+  splitBody.length > 8
+    ? splitBody.slice(8, splitBody.length - 1).concat(". ")
+    : body;
+---
+
+<article class="font-quicksand font-medium text-lg">
+  <span set:html={firstPart} />
+  <slot name="excerpt" />
+  <span set:html={lastPart} />
+</article>
