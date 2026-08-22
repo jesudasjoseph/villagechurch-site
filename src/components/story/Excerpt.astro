@@ -4,10 +4,10 @@ const { text } = Astro.props;
 
 {
   text ? (
-    <span class="aspect-square float-start quotes relative tracking-wide ml-2 mr-12 my-4 p-4 inline-block w-70 font-noto-sans-mono font-bold uppercase text-storyprimary">
-      <span class="absolute bg-storysecondary top-0 bottom-0 left-0 right-0 ml-8 -z-1 " />
+    <article class="aspect-square float-start quotes relative tracking-wide ml-2 mr-12 my-4 p-4 inline-block w-70 font-noto-sans-mono font-bold uppercase text-storyprimary indent-0">
+      <span class="absolute bg-storysecondary top-0 bottom-0 left-0 right-0 ml-8 -z-1" />
       {text}
-    </span>
+    </article>
   ) : (
     ""
   )

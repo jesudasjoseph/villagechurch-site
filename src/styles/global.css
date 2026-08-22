@@ -8,6 +8,7 @@
     --font-noto-sans-mono: 'Noto Sans Mono';
     --color-storyprimary: #4d4d4d;
     --color-storysecondary: #e8ce78;
+    --color-storydivider: #7a7a71;
 }
 
 @layer components {

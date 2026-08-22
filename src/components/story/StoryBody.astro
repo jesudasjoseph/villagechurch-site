@@ -2,14 +2,13 @@
 const body: string = Astro.props.body;
 
 let splitBody = body.split(". ");
-let firstPart = splitBody.length > 8 ? splitBody.slice(0, 8).concat(". ") : "";
+let firstPart =
+  splitBody.length > 8 ? splitBody.slice(0, 8).join(". ") + ". " : "";
 let lastPart =
-  splitBody.length > 8
-    ? splitBody.slice(8, splitBody.length - 1).concat(". ")
-    : body;
+  splitBody.length > 8 ? splitBody.slice(8, -1).join(". ") + ". " : body;
 ---
 
-<article class="font-quicksand font-medium text-lg">
+<article class="font-quicksand font-medium text-lg indent-8">
   <span set:html={firstPart} />
   <slot name="excerpt" />
   <span set:html={lastPart} />

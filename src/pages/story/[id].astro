@@ -6,7 +6,6 @@ import StoryBody from "../../components/story/StoryBody.astro";
 
 export async function getStaticPaths() {
   const stories = await getCollection("story");
-  console.log("stories", stories);
   return stories.map((data, index) => ({
     params: { id: data.data.slug },
     props: { story: data.data, index: index },
@@ -14,26 +13,48 @@ export async function getStaticPaths() {
 }
 
 const { story, index } = Astro.props;
-
-const text =
-  "Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapien vitae pellentesque sem placerat. In id cursus mi pretium tellus duis convallis. Tempus leo eu aenean sed diam urna tempor. Pulvinar vivamus fringilla lacus nec metus bibendum egestas. Iaculis massa nisl malesuada lacinia integer nunc posuere. Ut hendrerit semper vel class aptent taciti sociosqu. Ad litora torquent per conubia nostra inceptos himenaeos.\
-Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapien vitae pellentesque sem placerat. In id cursus mi pretium tellus duis convallis. Tempus leo eu aenean sed diam urna tempor. Pulvinar vivamus fringilla lacus nec metus bibendum egestas. Iaculis massa nisl malesuada lacinia integer nunc posuere. Ut hendrerit semper vel class aptent taciti sociosqu. Ad litora torquent per conubia nostra inceptos himenaeos.\
-Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapien vitae pellentesque sem placerat. In id cursus mi pretium tellus duis convallis. Tempus leo eu aenean sed diam urna tempor. Pulvinar vivamus fringilla lacus nec metus bibendum egestas. Iaculis massa nisl malesuada lacinia integer nunc posuere. Ut hendrerit semper vel class aptent taciti sociosqu. Ad litora torquent per conubia nostra inceptos himenaeos.\
-Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapien vitae pellentesque sem placerat. In id cursus mi pretium tellus duis convallis. Tempus leo eu aenean sed diam urna tempor. Pulvinar vivamus fringilla lacus nec metus bibendum egestas. Iaculis massa nisl malesuada lacinia integer nunc posuere. Ut hendrerit semper vel class aptent taciti sociosqu. Ad litora torquent per conubia nostra inceptos himenaeos.\
-Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapien vitae pellentesque sem placerat. In id cursus mi pretium tellus duis convallis. Tempus leo eu aenean sed diam urna tempor. Pulvinar vivamus fringilla lacus nec metus bibendum egestas. Iaculis massa nisl malesuada lacinia integer nunc posuere. Ut hendrerit semper vel class aptent taciti sociosqu. Ad litora torquent per conubia nostra inceptos himenaeos.";
 ---
 
 <Page title={story.title}>
-  <h1
-    class="text-storyprimary text-8xl font-bold w-full flex items-start font-playfair-display m-8 relative"
+  <heading
+    class="flex flex-col sm:flex-row gap-8 sm:gap-4 justify-between pb-8 text-storyprimary"
   >
-    {story.title}
-  </h1>
-  <div class="bg-storysecondary ml-40 p-8 pt-10 -mt-4">
-    <p>{story.date}</p>
-  </div>
+    <div class="relative">
+      <div
+        class="absolute border-l-2 left-0 bottom-0 -top-6 border-l-storydivider"
+      >
+      </div>
+      <div
+        class="absolute border-t-2 -left-8 top-0 right-1/2 border-t-storydivider"
+      >
+      </div>
+      <h1
+        class="md:text-8xl sm:text-6xl text-5xl font-bold font-playfair-display sm:m-4 sm:ml-6 mr-0 m-2 ml-4"
+      >
+        {story.title}
+      </h1>
+      <div
+        class="font-noto-sans-mono uppercase text-sm ml-6 sm:text-lg sm:ml-24"
+      >
+        By {story.author}
+      </div>
+    </div>
+    <div
+      class="bg-storysecondary relative px-4 pt-4 sm:w-38 shrink-0 sm:h-50 w-24 h-28"
+    >
+      <div
+        class="font-noto-sans-mono font-bold absolute top-0 -left-2 sm:-left-4 pt-1 sm:pl-6 sm:pr-4 pl-4 pr-1 leading-tight border-b-storydivider border-b sm:text-lg text-xs"
+      >
+        VOL.{index + 1}
+      </div>
+      <div
+        class="absolute -rotate-90 bottom-0 left-full origin-bottom-left font-playfair-display sm:text-6xl text-4xl font-bold sm:px-4 sm:pb-6 px-2 pb-4"
+      >
+        Our Stories
+      </div>
+    </div>
+  </heading>
+  <StoryBody body={story.body}>
+    <Excerpt slot="excerpt" text={story.excerpt} />
+  </StoryBody>
 </Page>
-
-<StoryBody body={story.body}>
-  <Excerpt slot="excerpt" text={story.excerpt} />
-</StoryBody>
