@@ -5,7 +5,7 @@ if (!import.meta.env.STRAPI_URL) {
   throw new Error('Unconfigured Environment Variable: "STRAPI_URL"');
 }
 
-const story = defineCollection({
+const stories = defineCollection({
   loader: strapiLoader("stories", {
     url: import.meta.env.STRAPI_URL,
     idGenerator: (data) => data.slug as string,
@@ -13,5 +13,5 @@ const story = defineCollection({
 });
 
 export const collections = {
-  story,
+  stories,
 };

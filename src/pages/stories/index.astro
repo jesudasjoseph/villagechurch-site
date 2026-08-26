@@ -1,0 +1,34 @@
+---
+import Page from "../../layouts/Page.astro";
+import Title from "../../components/stories/Title.astro";
+import Tile from "../../components/stories/Tile.astro";
+import { getCollection } from "astro:content";
+
+const stories = await getCollection("stories");
+---
+
+<Page title="Our Stories">
+  <heading
+    class="flex flex-col sm:flex-row gap-8 sm:gap-4 justify-between pb-8 text-storyprimary"
+  >
+    <Title title="Our Stories" />
+  </heading>
+  <main>
+    {
+      stories.length === 0 ? (
+        <div class="bg-storysecondary p-8 text-6xl text-storyprimary font-bold font-noto-sans-mono text-center uppercase">
+          Comming Soon!
+        </div>
+      ) : (
+        stories.map((story, index) => (
+          <Tile
+            title={story.data.title}
+            slug={story.data.slug}
+            volume={index + 1}
+            author={story.data.author}
+          />
+        ))
+      )
+    }
+  </main>
+</Page>

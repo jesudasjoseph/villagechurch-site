@@ -1,0 +1,31 @@
+---
+interface Props {
+  title: string;
+  author?: string;
+}
+
+const { title, author } = Astro.props;
+---
+
+<div class="relative text-storyprimary">
+  <div class="absolute border-l-2 left-0 bottom-0 -top-6 border-l-storydivider">
+  </div>
+  <div
+    class="absolute border-t-2 -left-8 top-0 right-1/2 border-t-storydivider"
+  >
+  </div>
+  <h1
+    class="md:text-8xl sm:text-6xl text-5xl font-bold font-playfair-display sm:m-4 sm:ml-6 mr-0 m-2 ml-4"
+  >
+    {title}
+  </h1>
+  {
+    author ? (
+      <div class="font-noto-sans-mono uppercase text-sm ml-6 sm:text-lg sm:ml-24">
+        By {author}
+      </div>
+    ) : (
+      ""
+    )
+  }
+</div>

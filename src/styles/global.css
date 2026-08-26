@@ -6,6 +6,8 @@
     --font-playfair-display: 'Playfair Display';
     --font-quicksand: 'Quicksand';
     --font-noto-sans-mono: 'Noto Sans Mono';
+    --shadow-story-lg: 4px 6px 0 0 black, 0 0 2px 0 black;
+    --shadow-story-md: 2px 4px 0 0 black, 0 0 1px 0 black;
     --color-storyprimary: #4d4d4d;
     --color-storysecondary: #e8ce78;
     --color-storydivider: #7a7a71;

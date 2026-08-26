@@ -1,0 +1,37 @@
+---
+interface Props {
+  title: string;
+  slug: string;
+  volume?: number;
+  author?: string;
+}
+
+const { title, volume, slug, author } = Astro.props;
+---
+
+<article
+  class="md:w-75 transition-all duration-300 hover:shadow-story-lg hover:-translate-y-2 hover:-translate-x-1 active:shadow-story-md active:-translate-y-1 active:-translate-x-0.5"
+>
+  <a href=`/stories/${slug}` class="flex">
+    <div class="px-1 pb-1">
+      <h3
+        class="text-4xl font-bold font-playfair-display text-storyprimary mb-2"
+      >
+        {title}
+      </h3>
+
+      <span
+        class="uppercase font-bold font-noto-sans-mono font-sm text-storyprimary"
+      >
+        By {author}
+      </span>
+    </div>
+    <div class="bg-storysecondary w-40 h-50 float-end relative p-1">
+      <div
+        class="text-storyprimary font-noto-sans-mono font-bold text-sm pb-1 leading-tight"
+      >
+        VOL. {volume}
+      </div>
+    </div>
+  </a>
+</article>

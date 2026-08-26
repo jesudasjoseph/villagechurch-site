@@ -1,0 +1,30 @@
+---
+import { getCollection } from "astro:content";
+import Page from "../../layouts/Page.astro";
+import Excerpt from "../../components/stories/Excerpt.astro";
+import Marker from "../../components/stories/Marker.astro";
+import Title from "../../components/stories/Title.astro";
+import StoryBody from "../../components/stories/StoryBody.astro";
+
+export async function getStaticPaths() {
+  const stories = await getCollection("stories");
+  return stories.map((story, index) => ({
+    params: { id: story.data.slug },
+    props: { story: story.data, volume: index + 1 },
+  }));
+}
+
+const { story, volume } = Astro.props;
+---
+
+<Page title=`${story.title} | Our Stories`>
+  <heading
+    class="flex flex-col sm:flex-row gap-8 sm:gap-4 justify-between pb-8 text-storyprimary"
+  >
+    <Title title={story.title} author={story.author} />
+    <Marker {volume} />
+  </heading>
+  <StoryBody body={story.body}>
+    <Excerpt slot="excerpt" text={story.excerpt} />
+  </StoryBody>
+</Page>
