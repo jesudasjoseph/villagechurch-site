@@ -9,25 +9,35 @@ const stories = await getCollection("stories");
 
 <Page title="Our Stories">
   <heading
-    class="flex flex-col sm:flex-row gap-8 sm:gap-4 justify-between pb-8 text-storyprimary"
+    class="flex flex-col sm:flex-row gap-8 sm:gap-4 justify-between pb-8 text-storyprimary mb-8"
   >
     <Title title="Our Stories" />
   </heading>
-  <main>
+  <main class="relative p-4">
+    <div
+      class="absolute border-l-2 right-0 bottom-0 -top-6 border-l-storydivider"
+    >
+    </div>
+    <div
+      class="absolute border-t-2 -right-8 top-0 left-1/2 border-t-storydivider"
+    >
+    </div>
     {
       stories.length === 0 ? (
         <div class="bg-storysecondary p-8 text-6xl text-storyprimary font-bold font-noto-sans-mono text-center uppercase">
-          Comming Soon!
+          Coming Soon!
         </div>
       ) : (
-        stories.map((story, index) => (
-          <Tile
-            title={story.data.title}
-            slug={story.data.slug}
-            volume={index + 1}
-            author={story.data.author}
-          />
-        ))
+        <div class="flex flex-row justify-end gap-4">
+          {stories.map((story, index) => (
+            <Tile
+              title={story.data.title}
+              slug={story.data.slug}
+              volume={index + 1}
+              author={story.data.author}
+            />
+          ))}
+        </div>
       )
     }
   </main>
